@@ -108,8 +108,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
 
                 for cluster in unique_clusters:
                     delta = 2 * neighbor_clusters_weights[cluster]
-                    delta -= ratio_ou * (in_clusters_weights[cluster]** 2 + (1-in_clusters_weights[cluster])**2 ))
-                    delta -= ratio_in * (ou_clusters_weights[cluster]** 2 + (1-on_clusters_weights[cluster])**2 ))
+                    delta -= ratio_ou * (in_clusters_weights[cluster]** 2 + (1-in_clusters_weights[cluster])**2 )
+                    delta -= ratio_in * (ou_clusters_weights[cluster]** 2 + (1-on_clusters_weights[cluster])**2 )
 
                     delta_local = delta - delta_exit
                     if delta_local > delta_best:
