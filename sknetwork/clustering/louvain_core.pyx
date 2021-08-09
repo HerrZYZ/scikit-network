@@ -100,16 +100,16 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 ratio_in = resolution * node_prob_in
 
                 delta_exit = 2 * (neighbor_clusters_weights[cluster_node] - self_loops[i])
-                delta_exit -= ratio_ou * ((in_clusters_weights[cluster_node])*(in_clusters_weights[cluster_node]) - node_prob_in)
-                delta_exit -= ratio_in * ((ou_clusters_weights[cluster_node])*(ou_clusters_weights[cluster_node]) - node_prob_ou)
+                delta_exit -= ratio_ou * ((in_clusters_weights[cluster_node] - node_prob_in)**2 +(1-(in_clusters_weights[cluster_node] - node_prob_in))**2)
+                delta_exit -= ratio_in * ((ou_clusters_weights[cluster_node] - node_prob_ou)**2 +(1-(on_clusters_weights[cluster_node] - node_prob_on))**2)
 
                 delta_best = 0
                 cluster_best = cluster_node
 
                 for cluster in unique_clusters:
                     delta = 2 * neighbor_clusters_weights[cluster]
-                    delta -= ratio_ou * (in_clusters_weights[cluster])* (in_clusters_weights[cluster])
-                    delta -= ratio_in * (ou_clusters_weights[cluster])* (ou_clusters_weights[cluster])
+                    delta -= ratio_ou * (in_clusters_weights[cluster]** 2 + (1-in_clusters_weights[cluster])**2 ))
+                    delta -= ratio_in * (ou_clusters_weights[cluster]** 2 + (1-on_clusters_weights[cluster])**2 ))
 
                     delta_local = delta - delta_exit
                     if delta_local > delta_best:
