@@ -100,8 +100,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 ratio_in = resolution * node_prob_in
 
                 delta_exit = 2 * (neighbor_clusters_weights[cluster_node] - self_loops[i])
-                delta_exit -= ratio_ou * ( pow((in_clusters_weights[cluster_node] - node_prob_in)],2)- pow((1-(in_clusters_weights[cluster_node] - node_prob_in)),50))
-                delta_exit -= ratio_in * ( pow((ou_clusters_weights[cluster_node] - node_prob_ou)],2)- pow((1-(ou_clusters_weights[cluster_node] - node_prob_ou)),50))
+                delta_exit -= ratio_ou * ( pow((in_clusters_weights[cluster_node] - node_prob_in),2)- pow((1-(in_clusters_weights[cluster_node] - node_prob_in)),50))
+                delta_exit -= ratio_in * ( pow((ou_clusters_weights[cluster_node] - node_prob_ou),2)- pow((1-(ou_clusters_weights[cluster_node] - node_prob_ou)),50))
                 
                 delta_best = 0
                 cluster_best = cluster_node
