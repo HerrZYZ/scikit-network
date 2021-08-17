@@ -100,13 +100,20 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 ratio_in = resolution * node_prob_in
 
                 delta_exit = 2 * (neighbor_clusters_weights[cluster_node] - self_loops[i])
+                
+                print(delta_exit)
+                print(in_clusters_weights[cluster_node])
+                print(node_prob_in)
+                print(ratio_ou)
+                print(ratio_in)
+                
                 if (in_clusters_weights[cluster_node] - node_prob_in) >0.15:
-                    delta_exit -= ratio_ou * (10)
-                    delta_exit -= ratio_in * (10)
+                    delta_exit -= 2 * ratio_ou * (in_clusters_weights[cluster_node] - node_prob_in)
+                    delta_exit -= 2 * ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou)
                     
                 elif (in_clusters_weights[cluster_node] - node_prob_in) <0.05:
-                    delta_exit += ratio_ou * (10)
-                    delta_exit += ratio_in * (10)
+                    delta_exit -= 0.5 * ratio_ou * (in_clusters_weights[cluster_node] - node_prob_in) - 0.0005
+                    delta_exit -= 0.5 * ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou) - 0.0005
                 else:
                     delta_exit -= ratio_ou * (in_clusters_weights[cluster_node] - node_prob_in)
                     delta_exit -= ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou)
@@ -119,12 +126,12 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 for cluster in unique_clusters:
                     delta = 2 * neighbor_clusters_weights[cluster]
                     if (in_clusters_weights[cluster]) >0.15:
-                        delta -= ratio_ou * (10)
-                        delta -= ratio_in * (10)
+                        delta -= 2 * ratio_ou * in_clusters_weights[cluster]
+                        delta -= 2 * ratio_in * ou_clusters_weights[cluster]
                     
                     elif (in_clusters_weights[cluster]) <0.05:
-                        delta += ratio_ou * (10)
-                        delta += ratio_in * (10)
+                        delta -= 0.5 * ratio_ou * in_clusters_weights[cluster] - 0.0005
+                        delta -= 0.5 * ratio_in * ou_clusters_weights[cluster] - 0.0005
                     else:
                         delta -= ratio_ou * in_clusters_weights[cluster]
                         delta -= ratio_in * ou_clusters_weights[cluster]
