@@ -81,8 +81,7 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
         increase_pass = 0
 
         for i in range(n):
-            if i ==10000:
-                print(i)
+            
             unique_clusters.clear()
             cluster_node = labels[i]
             j1 = indptr[i]
@@ -110,8 +109,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                     delta_exit -= 2 * ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou)
                     
                 elif (in_clusters_weights[cluster_node] - node_prob_in) <0.05:
-                    delta_exit -= 0.5 * ratio_ou * (in_clusters_weights[cluster_node] - node_prob_in) - 0.00005
-                    delta_exit -= 0.5 * ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou) - 0.00005
+                    delta_exit -= 0.5 * ratio_ou * (in_clusters_weights[cluster_node] - node_prob_in) - 0.00000001
+                    delta_exit -= 0.5 * ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou) - 0.00000001
                 else:
                     delta_exit -= ratio_ou * (in_clusters_weights[cluster_node] - node_prob_in)
                     delta_exit -= ratio_in * (ou_clusters_weights[cluster_node] - node_prob_ou)
@@ -128,8 +127,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                         delta -= 2 * ratio_in * ou_clusters_weights[cluster]
                     
                     elif (in_clusters_weights[cluster]) <0.05:
-                        delta -= 0.5 * ratio_ou * in_clusters_weights[cluster] - 0.00005
-                        delta -= 0.5 * ratio_in * ou_clusters_weights[cluster] - 0.00005
+                        delta -= 0.5 * ratio_ou * in_clusters_weights[cluster] - 0.00000001
+                        delta -= 0.5 * ratio_in * ou_clusters_weights[cluster] - 0.00000001
                     else:
                         delta -= ratio_ou * in_clusters_weights[cluster]
                         delta -= ratio_in * ou_clusters_weights[cluster]
