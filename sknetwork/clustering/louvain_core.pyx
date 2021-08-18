@@ -115,8 +115,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
 
                 elif (in_clusters_weights[cluster_node]) >0.15:
                     
-#                     delta_exit -= ratio_ou * (2 * (in_clusters_weights[cluster_node] - node_prob_in) -0.15)
-#                     delta_exit -= ratio_in * (2 * (ou_clusters_weights[cluster_node] - node_prob_ou) -0.15)
+                    delta_exit -= ratio_ou * (2 * (in_clusters_weights[cluster_node] - node_prob_in) -0.15)
+                    delta_exit -= ratio_in * (2 * (ou_clusters_weights[cluster_node] - node_prob_ou) -0.15)
                     
                 elif (in_clusters_weights[cluster_node] - node_prob_in) <0.05 and (in_clusters_weights[cluster_node] - node_prob_in) >0:
                     delta_exit -= ratio_ou * (2 * (in_clusters_weights[cluster_node] - node_prob_in) - 0.05)
