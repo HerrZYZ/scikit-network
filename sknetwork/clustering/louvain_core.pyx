@@ -110,7 +110,7 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 if (in_clusters_weights[cluster_node] - node_prob_in) == 0:
                     if node_prob_in > 0.15:
                         delta_exit -= -1
-                    elif:
+                    else:
                       delta_exit -= 1
 
                 elif (in_clusters_weights[cluster_node]) >0.15:
