@@ -82,7 +82,7 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
         increase = 0
         increase_pass = 0
         counts_loop += 1
-        if counts_loop. >100:
+        if counts_loop >100:
             break
 
         for i in range(n):
