@@ -82,7 +82,7 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
         increase = 0
         increase_pass = 0
         counts_loop += 1
-        if counts_loop >100:
+        if counts_loop >1000:
             break
 
         for i in range(n):
@@ -128,6 +128,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 for cluster in unique_clusters:
                     delta = 2 * neighbor_clusters_weights[cluster]
                     if (in_clusters_weights[cluster]) >0.15:
+                        
+                        print(in_clusters_weights[cluster])
                         delta -= ratio_ou * (2 *  in_clusters_weights[cluster] -0.15)
                         delta -= ratio_in * (2 *  ou_clusters_weights[cluster] -0.15)
                     
