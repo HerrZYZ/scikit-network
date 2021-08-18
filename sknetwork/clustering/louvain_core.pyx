@@ -75,10 +75,15 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
         neighbor_clusters_weights.push_back(0.)
         ou_clusters_weights.push_back(ou_node_probs[i])
         in_clusters_weights.push_back(in_node_probs[i])
+        
+    counts_loop=0
 
     while increase == 1:
         increase = 0
         increase_pass = 0
+        counts_loop += 1
+        if counts_loop. >100:
+            break
 
         for i in range(n):
             
