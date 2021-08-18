@@ -106,15 +106,15 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
                 ratio_in = resolution * node_prob_in
 
                 delta_exit = 2 * (neighbor_clusters_weights[cluster_node] - self_loops[i])
-                print (delta_exit)
-                print (in_clusters_weights[cluster_node] - node_prob_in)
-               
                 
-                if (in_clusters_weights[cluster_node] - node_prob_in) >0.15:
+                if (in_clusters_weights[cluster_node] - node_prob_in) == 0:
+                    delta_exit -= 1
+
+                elif (in_clusters_weights[cluster_node] - node_prob_in) >0.15:
                     delta_exit -= ratio_ou * (2 * (in_clusters_weights[cluster_node] - node_prob_in) -0.15)
                     delta_exit -= ratio_in * (2 * (ou_clusters_weights[cluster_node] - node_prob_ou) -0.15)
                     
-                elif (in_clusters_weights[cluster_node] - node_prob_in) <0.05:
+                elif (in_clusters_weights[cluster_node] - node_prob_in) <0.05 and (in_clusters_weights[cluster_node] - node_prob_in) >0:
                     delta_exit -= ratio_ou * (2 * (in_clusters_weights[cluster_node] - node_prob_in) - 0.05)
                     delta_exit -= ratio_in * (2 * (ou_clusters_weights[cluster_node] - node_prob_ou) - 0.05)
                 else:
@@ -128,12 +128,8 @@ def fit_core(float resolution, float tol, float[:] ou_node_probs, float[:] in_no
 
                 for cluster in unique_clusters:
                     delta = 2 * neighbor_clusters_weights[cluster]
-                    print (delta)
-                    print (in_clusters_weights[cluster])
-                    
+                   
                     if (in_clusters_weights[cluster]) >0.15:
-                        
-                        print(in_clusters_weights[cluster])
                         delta -= ratio_ou * (2 *  in_clusters_weights[cluster] -0.15)
                         delta -= ratio_in * (2 *  ou_clusters_weights[cluster] -0.15)
                     
